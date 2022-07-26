@@ -68,7 +68,8 @@ class Form extends Component {
       input: {},
       aboutLength: '0/600',
       projectLength: '0/600',
-      stackLength: '0/600'
+      stackLength: '0/600',
+      errors: ''
     })
 }
 
@@ -130,14 +131,14 @@ class Form extends Component {
 
     if(!input['stack']) {
       isValid = false
-      errors['stack'] = 'Enter about you'
+      errors['stack'] = 'Enter your stack'
     } else if(input['stack'].length > 600){
       isValid = false
     }
 
     if(!input['project']) {
       isValid = false
-      errors['project'] = 'Enter about you'
+      errors['project'] = 'Enter about your last project'
     } else if(input['project'].length > 600){
       isValid = false
     }
