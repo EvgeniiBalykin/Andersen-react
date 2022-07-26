@@ -10,7 +10,8 @@ class Form extends Component {
       errors: {},
       aboutLength: '0/600',
       stackLength: '0/600',
-      projectLength: '0/600'
+      projectLength: '0/600', 
+      createForm: true
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);  
     this.onSubmit = this.onSubmit.bind(this)
@@ -74,6 +75,9 @@ class Form extends Component {
   onSubmit = () => {
     if(this.validate()){
       console.log(this.state.input)
+    this.setState({
+      createForm: false
+    })
     }
   }
 
@@ -148,7 +152,20 @@ class Form extends Component {
   render() {
     return (
       <div className="container">
-        <div className='form-container'>
+        <div className={!this.state.createForm ? 'ready-form' : 'ready-form_hidden'}>
+          <table>
+            <h1>{this.state.input.name} {this.state.input.surname}</h1>
+            <ul>
+              <li>Date of birth: <text>{this.state.input.date}</text></li>
+              <li>Phone-number: <text>{this.state.input.number}</text></li>
+              <li>Site: <text>{this.state.input.site}</text></li>
+              <li>About: <text>{this.state.input.about}</text></li>
+              <li>Stack: <text>{this.state.input.stack}</text></li>
+              <li>Last project: <text>{this.state.input.project}</text></li>
+            </ul>
+          </table>
+        </div>
+        <div className={this.state.createForm ? 'form-container' : 'form-container_hidden'}>
         <h1>Create Form</h1>
           <div className='form'>
             <label htmlFor="name"><b>Name</b></label>
