@@ -1,5 +1,8 @@
 import './Form.scss'
 import React, {Component} from 'react'
+import Button from './Components/Button';
+import Input from './Components/Input';
+import TextArea from './Components/TextArea';
 
 class Form extends Component {
   constructor(props){
@@ -16,7 +19,6 @@ class Form extends Component {
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);  
     this.onSubmit = this.onSubmit.bind(this)
-    this.onDelete = this.onDelete.bind(this)
   }
 
   onChangeHandler = event => {
@@ -29,35 +31,70 @@ class Form extends Component {
     console.log(this.state)
   }
 
-  onDelete = () => {
-  }
-
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <h1>Create Form</h1>
-          <div className='form'>
-            <label for="name"><b>Name</b></label>
-            <input type="text" placeholder="Enter Name" name='name' onChange={this.onChangeHandler}/>
-            <label for="surname"><b>Surname</b></label>
-            <input type="text" placeholder="Enter Surname" name='surname' onChange={this.onChangeHandler}/>
-            <label for="date"><b>Date Of Birth</b></label>
-            <input type="text" placeholder="MM/DD/YYYY" name='dateOfBitrh' onChange={this.onChangeHandler}/>
-            <label for="phone"><b>Phone Number</b></label>
-            <input type="number" placeholder="Enter Number" name='number' onChange={this.onChangeHandler}/>
-            <label for="site"><b>Your Site</b></label>
-            <input type="text" placeholder="Enter Site" name='site' onChange={this.onChangeHandler}/>
-            <label for="about"><b>About You</b></label>
-            <p><textarea type="text" placeholder="About You" cols="50" rows="7" name='about' onChange={this.onChangeHandler}></textarea></p>
-            <label for="stack"><b>Your Stack</b></label>
-            <p><textarea type="text" placeholder="Your Stack" cols="50" rows="7" name='stack' onChange={this.onChangeHandler}></textarea></p>
-            <label for="project"><b>Your Last Project</b></label>
-            <p><textarea type="text" placeholder="Your Project" cols="50" rows="7" name='project' onChange={this.onChangeHandler}></textarea></p>
-          </div>
-          <div className='buttons'>
-            <button type="cancel" className="calncel-btn" onClick={this.onDelete}>Сбросить</button>
-            <button type="submit" className="submit-btn" onClick={this.onSubmit}>Сохранить</button>
-          </div>
+        <div className='form'>
+          <Input 
+            type = 'text'
+            placeholder = 'Enter your name'
+            name = 'name'
+            onChange = {this.onChangeHandler}
+            title = 'Name'
+          />
+          <Input 
+            type = 'text'
+            placeholder = 'Enter your surname'
+            name = 'surname'
+            onChange = {this.onChangeHandler}
+            title = 'Surname'
+          />
+          <Input 
+            type = 'date'
+            name = 'date'
+            onChange = {this.onChangeHandler}
+            title = 'Date of birth'
+          />
+          <Input 
+            type = 'text'
+            name = 'number'
+            onChange = {this.onChangeHandler}
+            title = 'Enter your number'
+          />
+          <Input 
+            type = 'text'
+            name = 'site'
+            onChange = {this.onChangeHandler}
+            title = 'Enter your site'
+            defaultValue = 'https://'
+          />
+          <TextArea
+            type = "text" 
+            placeholder = "About You"  
+            name = 'about' 
+            onChange = {this.onChangeHandler}
+            title = 'Enter about you'
+          />
+          <TextArea
+            type="text" 
+            placeholder="Your Stack" 
+            name='stack' 
+            onChange={this.onChangeHandler}
+            title = 'Enter about stack'
+          />    
+          <TextArea
+            type = "text" 
+            placeholder = "Your Project"
+            name = 'project' 
+            onChange = {this.onChangeHandler}
+            title = 'Describe your last project'
+          /> 
+        </div>
+        <div className='buttons'>
+          <Button type='clear' title='Clear'/>
+          <Button type='submit' onClick={this.onSubmit} title='Submit'/>
+        </div>      
       </div>
     )
   }
