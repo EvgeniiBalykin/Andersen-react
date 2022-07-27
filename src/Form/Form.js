@@ -1,5 +1,11 @@
 import './Form.scss'
 import React, {Component} from 'react'
+import Button from './Components/Button';
+import Input from './Components/Input';
+import TextArea from './Components/TextArea';
+import Errors from './Components/Errors';
+import TextAreaInfo from './Components/TextAreaInfo';
+import ReadyForm from './../ReadyForm/ReadyForm';
 
 
 class Form extends Component {
@@ -56,20 +62,12 @@ class Form extends Component {
   }
   
   onDelete = () => {
-    this.name.value = ''
-    this.surname.value = ''
-    this.date.value = ''
-    this.number.value = ''
-    this.site.value = ''
-    this.about.value = ''
-    this.stack.value = ''
-    this.project.value = ''
     this.setState({
       input: {},
       aboutLength: '0/600',
       projectLength: '0/600',
       stackLength: '0/600',
-      errors: ''
+      errors: '',
     })
 }
 
@@ -80,6 +78,7 @@ class Form extends Component {
       createForm: false
     })
     }
+    console.log(this.state.input)
   }
 
   validate = () => {
@@ -154,57 +153,106 @@ class Form extends Component {
     return (
       <div className="container">
         <div className={!this.state.createForm ? 'ready-form' : 'ready-form_hidden'}>
-          <table>
-            <h1>{this.state.input.name} {this.state.input.surname}</h1>
-            <ul>
-              <li>Date of birth: <text>{this.state.input.date}</text></li>
-              <li>Phone-number: <text>{this.state.input.number}</text></li>
-              <li>Site: <text>{this.state.input.site}</text></li>
-              <li>About: <text>{this.state.input.about}</text></li>
-              <li>Stack: <text>{this.state.input.stack}</text></li>
-              <li>Last project: <text>{this.state.input.project}</text></li>
-            </ul>
-          </table>
+          <ReadyForm
+            name = {this.state.input.name}
+            surname = {this.state.input.surname}
+            date = {this.state.input.date}
+            number = {this.state.input.number}
+            site = {this.state.input.site}
+            about = {this.state.input.about}
+            stack = {this.state.input.stack}
+            project = {this.state.input.project}
+          />
         </div>
         <div className={this.state.createForm ? 'form-container' : 'form-container_hidden'}>
         <h1>Create Form</h1>
           <div className='form'>
-            <label htmlFor="name"><b>Name</b></label>
-            <input ref={(ref) => this.name= ref} type="text" placeholder="Enter Name" name='name' onChange={this.onChangeHandler}/>
-            <div className="text-error">{this.state.errors.name}</div>
-            <label htmlFor="surname"><b>Surname</b></label>
-            <input ref={(ref) => this.surname= ref} type="text" placeholder="Enter Surname" name='surname' onChange={this.onChangeHandler}/>
-            <div className="text-error">{this.state.errors.surname}</div>
-            <label htmlFor="date"><b>Date Of Birth</b></label>
-            <input ref={(ref) => this.date= ref} type="date" name='date' onChange={this.onChangeHandler}/>
-            <div className="text-error">{this.state.errors.date}</div>
-            <label htmlFor="phone"><b>Phone Number</b></label>
-            <input ref={(ref) => this.number= ref} type="text" placeholder="Enter Number" name='number' onChange={this.onChangeHandler}/>
-            <div className="text-error">{this.state.errors.number}</div>
-            <label htmlFor="site"><b>Your Site</b></label>
-            <input ref={(ref) => this.site= ref} type="text" placeholder="Enter Site" defaultValue={'https://'} name='site' onChange={this.onChangeHandler}/>
-            <div className="text-error">{this.state.errors.site}</div>
-            <label htmlFor="about"><b>About You</b></label>
-            <textarea ref={(ref) => this.about= ref} type="text" placeholder="About You" cols="50" rows="7" name='about' onChange={this.onChangeHandler}></textarea>
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <p className="text-error">{this.state.errors.about}</p>
-                <p style={{textAlign: 'right'}}>{this.state.aboutLength}</p>
-              </div>
-            <label htmlFor="stack"><b>Your Stack</b></label>
-            <textarea ref={(ref) => this.stack= ref} type="text" placeholder="Your Stack" cols="50" rows="7" name='stack' onChange={this.onChangeHandler}></textarea>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <p className="text-error">{this.state.errors.stack}</p>
-                <p style={{textAlign: 'right'}}>{this.state.stackLength}</p>
-              </div>            <label htmlFor="project"><b>Your Last Project</b></label>
-            <textarea ref={(ref) => this.project= ref} type="text" placeholder="Your Project" cols="50" rows="7" name='project' onChange={this.onChangeHandler}></textarea>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <p className="text-error">{this.state.errors.project}</p>
-                <p style={{textAlign: 'right'}}>{this.state.projectLength}</p>
-            </div>          
+            <Input 
+              type = 'text'
+              placeholder = 'Enter your name'
+              name = 'name'
+              onChange = {this.onChangeHandler}
+              title = 'Name'
+            />
+            <Errors
+              error = {this.state.errors.name}
+            />
+            <Input 
+              type = 'text'
+              placeholder = 'Enter your surname'
+              name = 'surname'
+              onChange = {this.onChangeHandler}
+              title = 'Surname'
+            />
+            <Errors
+              error = {this.state.errors.surName}
+            />
+            <Input 
+              type = 'date'
+              name = 'date'
+              onChange = {this.onChangeHandler}
+              title = 'Date of birth'
+            />
+            <Errors
+              error = {this.state.errors.date}
+            />
+            <Input 
+              type = 'text'
+              name = 'number'
+              onChange = {this.onChangeHandler}
+              title = 'Enter your number'
+            />
+            <Errors
+              error = {this.state.errors.number}
+            />
+            <Input 
+              
+              type = 'text'
+              name = 'site'
+              onChange = {this.onChangeHandler}
+              title = 'Enter your site'
+              defaultValue = 'https://'
+            />
+            <Errors
+              error = {this.state.errors.site}
+            />
+            <TextArea
+              type = "text" 
+              placeholder = "About You"  
+              name = 'about' 
+              onChange = {this.onChangeHandler}
+              title = 'Enter about you'
+            />
+            <TextAreaInfo
+              error = {this.state.errors.about}
+              length = {this.state.aboutLength}
+            />
+            <TextArea
+              type="text" 
+              placeholder="Your Stack" 
+              name='stack' 
+              onChange={this.onChangeHandler}
+              title = 'Enter about stack'
+            />
+            <TextAreaInfo
+              error = {this.state.errors.stack}
+              length = {this.state.stackLength}
+            />          
+            <TextArea
+              type = "text" 
+              placeholder = "Your Project"
+              name = 'project' 
+              onChange = {this.onChangeHandler}
+              title = 'Describe your last project'
+            />
+            <TextAreaInfo
+              error = {this.state.errors.project}
+              length = {this.state.projectLength}
+            />        
           </div>
           <div className='buttons'>
-            <button type="cancel" className="calncel-btn" onClick={this.onDelete}>Сбросить</button>
-            <button type="submit" className="submit-btn" onClick={this.onSubmit}>Сохранить</button>
+            <Button type='clear' onClick={this.onDelete} title='Clear'/>
+            <Button type='submit' onClick={this.onSubmit} title='Submit'/>
           </div>
           </div>
       </div>
