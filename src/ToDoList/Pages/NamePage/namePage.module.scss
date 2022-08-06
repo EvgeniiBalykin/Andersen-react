@@ -1,0 +1,20 @@
+.nameContainer{
+  margin: 200px auto;
+  .title{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(96, 80, 80);
+  }
+  .inputContainer{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btnLog{
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
