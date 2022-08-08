@@ -13,7 +13,9 @@ function ListPage() {
   const [newTask, setNewTask] = useState("");
 
   const name = useSelector((state) => state.name);
-  const todos = useSelector((state) => state.todos);
+  const todosInProgress = useSelector((state) =>
+    state.todos.filter((todo) => todo.isComplete === false)
+  );
 
   const addTask = () => {
     const task = {
@@ -30,7 +32,9 @@ function ListPage() {
     <div className={styles.listContainer}>
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>{name}</h1>
-        <span className={styles.titleText}>Current Tasks: {todos.length}</span>
+        <span className={styles.titleText}>
+          Current Tasks: {todosInProgress.length}
+        </span>
       </div>
       <div className={styles.taskAdd}>
         <Input
