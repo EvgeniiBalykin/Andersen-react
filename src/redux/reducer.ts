@@ -1,4 +1,4 @@
-import { initialState } from "./states";
+import { ActionTypes, IState, ITodo } from "./types";
 import {
   ADD_NAME,
   ADD_TASK,
@@ -7,18 +7,23 @@ import {
   EDIT_TASK,
 } from "./actionTypes";
 
-const reducer = (state = initialState, action) => {
+export const initialState: IState = {
+  name: "",
+  todos: [],
+};
+
+const reducer = (state = initialState, action: ActionTypes): IState => {
   const { type, payload } = action;
   switch (type) {
     case ADD_NAME:
       return {
         ...state,
-        name: payload,
+        name: payload as string,
       };
     case ADD_TASK:
       return {
         ...state,
-        todos: [...state.todos, payload],
+        todos: [...state.todos, payload as ITodo],
       };
     case DELETE_TASK:
       return {
@@ -33,7 +38,7 @@ const reducer = (state = initialState, action) => {
         ),
       };
     case EDIT_TASK: {
-      const { id, text } = payload || {};
+      const { id, text } = payload as ITodo;
       return {
         ...state,
         todos: state.todos.map((todo) =>

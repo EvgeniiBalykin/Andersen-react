@@ -7,15 +7,15 @@ import ToDo from "../../Components/ToDo/ToDo";
 import { FiCheck } from "react-icons/fi";
 import { addTaskAction } from "../../../redux/actions";
 import { v4 } from "uuid";
+import { selectName } from "../../../redux/selectors";
+import { selectIncompletedTodos } from './../../../redux/selectors';
 
 function ListPage() {
   const dispatch = useDispatch();
   const [newTask, setNewTask] = useState("");
 
-  const name = useSelector((state) => state.name);
-  const todosInProgress = useSelector((state) =>
-    state.todos.filter((todo) => todo.isComplete === false)
-  );
+  const name = useSelector(selectName);
+  const todosInProgress = useSelector(selectIncompletedTodos);
 
   const addTask = () => {
     const task = {
@@ -49,9 +49,7 @@ function ListPage() {
           onClick={addTask}
         />
       </div>
-      <ul className={styles.list}>
         <ToDo />
-      </ul>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./namePage.module.scss";
 import { Link } from "react-router-dom";
 import useBindDispatch from "../../../hooks/useBindDispatch";
@@ -6,14 +5,13 @@ import Button from "../../Components/Buttons/Button";
 import Input from "../../Components/Input/Input";
 import { useSelector } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
-import { addNameAction as _addNameAction } from "./../../../redux/actions";
+import { addNameAction as _addNameAction } from "../../../redux/actions";
+import { selectName } from "../../../redux/selectors";
 
 function NamePage() {
   const addNameAction = useBindDispatch(_addNameAction);
 
-  const name = useSelector((state) => {
-    return state.name;
-  });
+  const name = useSelector(selectName);
 
   return (
     <div className={style.nameContainer}>

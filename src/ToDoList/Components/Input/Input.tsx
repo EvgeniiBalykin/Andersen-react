@@ -1,7 +1,7 @@
-import React from "react";
+import { InputType } from "../../../componentTypes";
 import styles from "./input.module.scss";
 
-function Input({ placeholder, type, value, onChange }) {
+const Input = ({ placeholder, type, value, onChange }: InputType) => {
   return (
     <input
       className={styles.input}
@@ -11,6 +11,6 @@ function Input({ placeholder, type, value, onChange }) {
       onChange={onChange}
     />
   );
-}
+};
 
 export default Input;
