@@ -1,0 +1,24 @@
+.titleContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  text-transform: uppercase;
+  .title{
+    font-size: 25px;
+    color: rgba(68, 68, 68, 0.685);
+    margin: 0;
+  }
+  .titleText{
+    color: rgba(68, 68, 68, 0.685);
+  }
+}
+.taskAdd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btnAdd{
+    width: 40px;
+    height: 40px;
+  }
+}
